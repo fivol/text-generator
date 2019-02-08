@@ -14,6 +14,9 @@ python text_generator.py -f example_texts/voina-i-mir.txt -o new_model
 - -o <output text file name to save> (not nessesary, default - console output)
 - -b <begin word to text generation> (not nessesary, default - random)
 - -l <required text length> (not nessesary, default = 10)
+- -p <power> (default = 1, affects word generation style. Raised to a power frequency of each next word. Float number) 
+[than greater the degree, the less likely the small frequency word will fall]
+
 
 ### Example:
 ```

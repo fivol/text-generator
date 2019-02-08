@@ -11,6 +11,7 @@ parser.add_argument('-g', dest="model_path", default="_null_", type=str)
 parser.add_argument('-o', dest="output_name", default="_null_", type=str)
 parser.add_argument('-b', dest="begin_word", default="", type=str)
 parser.add_argument('-l', dest="text_length", default="10", type=int)
+parser.add_argument('-p', dest="metrics_power", default="1", type=float)
 
 args = parser.parse_args()
 
@@ -34,7 +35,7 @@ elif args.model_path != "_null_":
     path = args.model_path
     model.load_model(path)
 
-    text = model.generate(args.begin_word, args.text_length)
+    text = model.generate(args.begin_word, length=args.text_length, power=args.metrics_power)
     if args.output_name != "_null_":
         file = open(args.output_name, 'w')
         file.write(text)

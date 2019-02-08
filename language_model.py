@@ -45,7 +45,7 @@ class Text_generator:
         with open(path + '.pickle', 'rb') as handle:
             self.model = pickle.load(handle)
 
-    def generate(self, begin_word='', length=10):
+    def generate(self, begin_word='', length=10, power=1):
         if begin_word == '' or begin_word not in self.model:
             begin_word = random.choice(list(self.model.keys()))
 
@@ -54,8 +54,13 @@ class Text_generator:
 
         for i in range(length):
             result_text += curr_word + ' '
+            frequency = self.model[curr_word][1]
+
+            frequency **= power
+            frequency /= frequency.sum()
+
             curr_word = np.random.choice(self.model[curr_word][0], 1,
-                                         p=self.model[curr_word][1])[0]
+                                         p=frequency)[0]
         return result_text
 
     @staticmethod
