@@ -10,7 +10,7 @@ parser.add_argument('-f', dest="file_path", default="_null_", type=str)
 parser.add_argument('-g', dest="model_path", default="_null_", type=str)
 parser.add_argument('-o', dest="output_name", default="_null_", type=str)
 parser.add_argument('-b', dest="begin_word", default="", type=str)
-parser.add_argument('-l', dest="text_length", default="_null_", type=str)
+parser.add_argument('-l', dest="text_length", default="10", type=int)
 
 args = parser.parse_args()
 
@@ -26,14 +26,16 @@ if args.file_path != "_null_":
     model_name = args.output_name
     if model_name == "_null_":
         model_name = "model"
-    model.save(model_name)
+    model.save_model(model_name)
+
+    print(f"Model successfully saved (name = '{model_name}.pickle')")
 
 elif args.model_path != "_null_":
     path = args.model_path
     model.load_model(path)
 
-    text = model.generate(args.begin_word)
-    if args.output_name == "_null_":
+    text = model.generate(args.begin_word, args.text_length)
+    if args.output_name != "_null_":
         file = open(args.output_name, 'w')
         file.write(text)
         file.close()
