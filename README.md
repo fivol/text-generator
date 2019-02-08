@@ -5,6 +5,7 @@
 ### Example:
 ```
 python text_generator.py -f example_texts/voina-i-mir.txt
+python text_generator.py -f example_texts/voina-i-mir.txt -o new_model
 ```
  
 ## To generate text use:
@@ -17,6 +18,7 @@ python text_generator.py -f example_texts/voina-i-mir.txt
 ### Example:
 ```
 python text_generator.py -g model
+python text_generator.py -g model -o result_text.txt -b андрей -l 30 -s 456
 ```
 
 ## Enjoy!
